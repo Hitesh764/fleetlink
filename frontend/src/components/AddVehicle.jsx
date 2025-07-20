@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 export default function AddVehicle() {
   const [form, setForm] = useState({ name: '', capacityKg: '', tyres: '' });
+  const navigate = useNavigate();
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -20,7 +22,16 @@ export default function AddVehicle() {
 
   return (
     <div className="bg-white shadow-lg rounded-xl p-8 border border-gray-100">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">🚛 Add New Vehicle</h2>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold text-gray-800">🚛 Add New Vehicle</h2>
+        <button
+          onClick={() => navigate('/search-book')}
+          className="bg-gray-200 text-sm text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
+        >
+          🔍 Go to Search & Book
+        </button>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-5">
         <input
           name="name"
